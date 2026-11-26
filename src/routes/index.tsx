@@ -40,6 +40,7 @@ function App() {
   return (
     <div className="kiosk-stage">
       <main className="kiosk-frame" lang={lang}>
+        <div className="app-bg" style={{ backgroundImage: `url(${scenes[0]!.img})` }} />
         {screen.s === "welcome" && <Welcome lang={lang} setLang={setLang} onStart={() => setScreen({ s: "hub" })} />}
         {screen.s === "hub" && <Hub lang={lang} setLang={setLang} onBack={() => setScreen({ s: "welcome" })} onPick={(game) => setScreen({ s: "setup", game })} />}
         {screen.s === "setup" && <Setup lang={lang} game={screen.game} onBack={() => setScreen({ s: "hub" })} onPlay={(scene, level) => setScreen({ s: "play", game: screen.game, scene, level })} />}
@@ -55,7 +56,7 @@ function App() {
 
 function LangToggle({ lang, setLang, light }: { lang: Lang; setLang: (l: Lang) => void; light?: boolean }) {
   return (
-    <div className="flex gap-2">
+    <div className={light ? "flex gap-2" : "lang-switch"}>
       {(["gu", "en"] as const).map((l) => (
         <button key={l} onClick={() => setLang(l)} className={`${light ? "chip" : "chip-dark"} ${lang === l ? "chip-on" : ""}`}>
           {l === "gu" ? "ગુજરાતી" : "English"}
@@ -108,9 +109,9 @@ function Hub({ lang, setLang, onBack, onPick }: { lang: Lang; setLang: (l: Lang)
                   ) : (
                     <div className="card-art card-art-empty"><span>{g.icon}</span></div>
                   )}
-                  <span className="text-[2.6cqw] font-bold tracking-widest text-terra">NO. {String(g.id).padStart(2, "0")}</span>
-                  <span className="font-display text-[4.2cqw] font-bold leading-tight tracking-tight text-forest">{g.name[lang]}</span>
-                  <span className="text-[3cqw] leading-snug text-earth/70">{g.kind ? g.desc[lang] : t.soon[lang]}</span>
+                  <span className="text-[2.4cqw] font-bold tracking-[0.2em] text-gold">NO. {String(g.id).padStart(2, "0")}</span>
+                  <span className="font-display text-[4.2cqw] font-bold leading-tight tracking-tight text-ivory">{g.name[lang]}</span>
+                  <span className="text-[3cqw] leading-snug text-ivory/70">{g.kind ? g.desc[lang] : t.soon[lang]}</span>
                 </button>
               ))}
             </div>
@@ -131,7 +132,7 @@ function Setup({ lang, game, onBack, onPlay }: { lang: Lang; game: Game; onBack:
         <button className="btn-wood" onClick={onBack} aria-label={t.back[lang]}>←</button>
         <div className="signboard flex-1 text-center">{game.icon} {game.name[lang]}</div>
       </header>
-      <div className="parchment p-4 text-center text-[4cqw] text-earth">{game.how[lang]}</div>
+      <div className="parchment px-5 py-4 text-center text-[3.8cqw] leading-relaxed text-ivory/90">{game.how[lang]}</div>
       <div>
         <h3 className="chapter">{t.picture[lang]}</h3>
         <div className="grid grid-cols-4 gap-[2cqw]">
