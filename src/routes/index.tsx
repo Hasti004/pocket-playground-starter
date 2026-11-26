@@ -75,9 +75,9 @@ function Welcome({ lang, setLang, onStart }: { lang: Lang; setLang: (l: Lang) =>
       ))}
       {[0, 1, 2, 3, 4].map((i) => <span key={i} className="leaf pointer-events-none" style={{ left: `${10 + i * 20}%`, animationDelay: `${i * 2.3}s` }}>🍂</span>)}
       <div className="rise relative z-10 flex flex-col items-center pt-[10cqh] text-center">
-        <p className="text-[3cqw] font-bold tracking-[0.3em] text-ivory uppercase">Gujarat Tourism · Sasan Gir</p>
-        <h1 className="font-gu mt-[2cqh] text-[17cqw] leading-none text-ivory drop-title">{t.title.gu}</h1>
-        <h2 className="font-display text-[8cqw] text-gold drop-title">Gir Puzzle</h2>
+        <p className="glass rounded-full px-4 py-1.5 text-[2.6cqw] font-bold tracking-[0.25em] text-ivory uppercase">Gujarat Tourism · Sasan Gir</p>
+        <h1 className="font-gu mt-[2cqh] text-[18cqw] font-bold leading-none tracking-tight text-ivory drop-title">{t.title.gu}</h1>
+        <h2 className="font-display text-[7cqw] font-bold tracking-tight text-gold drop-title">Gir Puzzle</h2>
         <p className="mt-[1.5cqh] max-w-[80%] text-[4.5cqw] text-ivory drop-title">{t.tagline[lang]}</p>
       </div>
       <div className="rise relative z-10 mt-auto flex flex-col items-center gap-[3cqh] pb-[9cqh]" style={{ animationDelay: ".3s" }}>
@@ -108,9 +108,9 @@ function Hub({ lang, setLang, onBack, onPick }: { lang: Lang; setLang: (l: Lang)
                   ) : (
                     <div className="card-art card-art-empty"><span>{g.icon}</span></div>
                   )}
-                  <span className="text-[2.6cqw] font-bold text-terra">#{String(g.id).padStart(2, "0")}</span>
-                  <span className="text-[4cqw] font-bold leading-tight text-earth">{g.name[lang]}</span>
-                  <span className="text-[3cqw] leading-tight text-olive">{g.kind ? g.desc[lang] : `🔒 ${t.soon[lang]}`}</span>
+                  <span className="text-[2.6cqw] font-bold tracking-widest text-terra">NO. {String(g.id).padStart(2, "0")}</span>
+                  <span className="font-display text-[4.2cqw] font-bold leading-tight tracking-tight text-forest">{g.name[lang]}</span>
+                  <span className="text-[3cqw] leading-snug text-earth/70">{g.kind ? g.desc[lang] : t.soon[lang]}</span>
                 </button>
               ))}
             </div>

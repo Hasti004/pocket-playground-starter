@@ -46,7 +46,7 @@ export function GameShell({ game, scene, lang, moves, progress, done, onBack, on
           ))}
           <div className="celebrate-card">
             <img src={scene.img} alt={scene[lang]} className="h-[28cqh] w-full rounded-2xl object-cover" />
-            <p className="font-display text-3xl text-forest">🦁 {t.won[lang]}</p>
+            <p className="font-display text-3xl font-bold tracking-tight text-forest">{t.won[lang]}</p>
             <p className="text-earth">⏱ {mm}{moves !== undefined ? ` · 👣 ${moves}` : ""}</p>
             <div className="fact"><b>{t.didYouKnow[lang]}</b><br />{lang === "gu" ? scene.factGu : scene.factEn}</div>
             <div className="grid w-full grid-cols-2 gap-3">
