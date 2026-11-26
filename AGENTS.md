@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Kiosk presentation
+- Keep shared kiosk overlays in `KioskModal` using a portal into the portrait frame so dialogs remain within the exhibit on desktop.
+- Keep game controls and victory presentation in `GameShell`; retain the existing puzzle engines so visual changes do not fork gameplay.
+- Keep kiosk timing in the pure idle policy module with boundary tests; synthesize audio only after user interactions to support silent kiosks without media downloads.
+- Express the cinematic theme through semantic CSS tokens and shared Button variants so every screen uses consistent glass, contrast, and interaction states.
