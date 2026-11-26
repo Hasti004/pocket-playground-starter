@@ -62,6 +62,19 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --font-sans: "Fredoka", "Noto Sans Gujarati", sans-serif;
+  --font-display: "Fredoka", "Baloo Bhai 2", sans-serif;
+  --font-gu: "Baloo Bhai 2", "Noto Sans Gujarati", sans-serif;
+  --color-forest: var(--forest);
+  --color-leaf: var(--leaf);
+  --color-gold: var(--gold);
+  --color-terra: var(--terra);
+  --color-parchment: var(--parchment);
+  --color-earth: var(--earth);
+  --color-sand: var(--sand);
+  --color-olive: var(--olive);
+  --color-water: var(--water);
+  --color-ivory: var(--ivory);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -73,9 +86,19 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --forest: oklch(0.39 0.06 155);
+  --leaf: oklch(0.64 0.1 120);
+  --gold: oklch(0.8 0.12 80);
+  --terra: oklch(0.61 0.11 50);
+  --parchment: oklch(0.94 0.04 85);
+  --earth: oklch(0.4 0.04 50);
+  --sand: oklch(0.84 0.06 80);
+  --olive: oklch(0.53 0.07 120);
+  --water: oklch(0.65 0.06 215);
+  --ivory: oklch(0.985 0.02 85);
+  --radius: 1rem;
+  --background: var(--parchment);
+  --foreground: var(--earth);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -154,3 +177,37 @@
     color: var(--color-foreground);
   }
 }
+
+@layer base {
+  html, body { height: 100%; overscroll-behavior: none; }
+  body { font-family: var(--font-sans); user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+}
+.kiosk-stage { position: fixed; inset: 0; display: grid; place-items: center; background: var(--forest); }
+.kiosk-frame { container-type: inline-size; position: relative; overflow: hidden; height: 100dvh; width: min(100vw, calc(100dvh * 9 / 16)); background: var(--parchment); }
+.paper { background: radial-gradient(circle at 20% 10%, var(--ivory), var(--parchment) 60%, var(--sand)); }
+.welcome-veil { background: linear-gradient(to bottom, oklch(0.3 0.05 155 / 0.6), transparent 40%, transparent 60%, oklch(0.3 0.05 155 / 0.75)); }
+.drop-title { text-shadow: 0 3px 12px oklch(0.2 0.04 60 / 0.6); }
+.signboard { font-family: var(--font-display); font-weight: 700; color: var(--ivory); background: linear-gradient(var(--terra), var(--earth)); padding: .5rem 1.25rem; border-radius: .6rem; border: 3px solid var(--earth); box-shadow: 0 4px 0 oklch(0.3 0.04 50); }
+.parchment { background: var(--ivory); border: 2px solid var(--sand); border-radius: 1rem; box-shadow: 0 4px 12px oklch(0.4 0.04 50 / .15); }
+.tray { background: var(--sand); padding: .5rem; border-radius: 1.25rem; border: 4px solid var(--earth); box-shadow: inset 0 2px 8px oklch(0.4 0.04 50 / .3); }
+.tile { border-radius: .4rem; min-height: 0; transition: transform .2s, box-shadow .2s; box-shadow: 0 2px 4px oklch(0.3 0.04 50 / .3); }
+.tile-selected { transform: scale(.92); box-shadow: 0 0 0 4px var(--gold); }
+.celebrate { background: oklch(0.39 0.06 155 / .85); animation: pop .4s ease-out; }
+@utility btn-base { font-family: var(--font-display); font-weight: 700; border-radius: 999px; padding: .9rem 1.6rem; min-height: 56px; transition: transform .1s; &:active { transform: translateY(3px) scale(.98); } }
+.btn-gold { @apply btn-base; background: var(--gold); color: var(--earth); box-shadow: 0 5px 0 var(--terra); }
+.btn-wood { @apply btn-base; background: var(--earth); color: var(--ivory); box-shadow: 0 4px 0 oklch(0.28 0.03 50); padding: .6rem 1.1rem; }
+.btn-leaf { @apply btn-base; background: var(--leaf); color: var(--ivory); box-shadow: 0 5px 0 var(--olive); }
+.btn-terra { @apply btn-base; background: var(--terra); color: var(--ivory); box-shadow: 0 5px 0 var(--earth); }
+.chip { @apply btn-base; background: oklch(0.985 0.02 85 / .25); color: var(--ivory); border: 2px solid var(--ivory); padding: .5rem 1.4rem; min-height: 48px; }
+.chip-on { background: var(--ivory); color: var(--forest); }
+.game-card { display: flex; flex-direction: column; align-items: center; gap: .35rem; padding: 1rem .6rem; background: var(--ivory); border: 3px solid var(--sand); border-radius: 1.25rem; box-shadow: 0 5px 0 var(--sand); text-align: center; &:active { transform: translateY(3px); } }
+.game-card-locked { opacity: .6; filter: grayscale(.4); }
+.no-scrollbar { scrollbar-width: none; }
+.ken-burns { animation: kb 30s ease-in-out infinite alternate; }
+.pulse { animation: pulse 2s ease-in-out infinite; }
+.butterfly { position: absolute; z-index: 5; font-size: 1.8rem; animation: fly 9s ease-in-out infinite; }
+.butterfly.delay { animation-delay: -4s; }
+@keyframes kb { to { transform: scale(1.12) translateY(-2%); } }
+@keyframes pulse { 50% { transform: scale(1.06); } }
+@keyframes pop { from { opacity: 0; transform: scale(.9); } }
+@keyframes fly { 25% { transform: translate(40px,-30px) rotate(10deg); } 50% { transform: translate(80px,10px); } 75% { transform: translate(30px,40px) rotate(-10deg); } }
