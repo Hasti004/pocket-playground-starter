@@ -37,8 +37,8 @@ export function GridSwap({ img, cols, rows, rotate, onMove }: Props) {
     const s = start.current; start.current = null; setDrag(null);
     if (!s) return;
     if (s.moved) {
-      const el = document.elementsFromPoint(e.clientX, e.clientY).find((x) => (x as HTMLElement).dataset?.idx && Number((x as HTMLElement).dataset.idx) !== s.i) as HTMLElement | undefined;
-      if (el) swap(s.i, Number(el.dataset.idx));
+      const el = document.elementsFromPoint(e.clientX, e.clientY).find((x) => (x as HTMLElement).dataset?.["idx"] && Number((x as HTMLElement).dataset["idx"]) !== s.i) as HTMLElement | undefined;
+      if (el) swap(s.i, Number(el.dataset["idx"]));
       return;
     }
     if (rotate) { const r = [...rot]; r[s.i] = r[s.i]! + 1; commit([...order], r); return; }

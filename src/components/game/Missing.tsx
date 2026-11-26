@@ -29,9 +29,9 @@ export function Missing({ img, decoy, cols, rows, missing, onProgress }: { img: 
 
   const up = (e: React.PointerEvent, it: Item) => {
     start.current = null; setDrag(null);
-    const hole = document.elementsFromPoint(e.clientX, e.clientY).find((x) => (x as HTMLElement).dataset?.hole) as HTMLElement | undefined;
+    const hole = document.elementsFromPoint(e.clientX, e.clientY).find((x) => (x as HTMLElement).dataset?.["hole"]) as HTMLElement | undefined;
     if (!hole) return;
-    if (it.real && Number(hole.dataset.hole) === it.idx) {
+    if (it.real && Number(hole.dataset["hole"]) === it.idx) {
       const next = [...filled, it.idx]; setFilled(next); onProgress(next.length, holes.length);
     } else { setWrong(it.key); setTimeout(() => setWrong(null), 500); }
   };
